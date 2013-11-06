@@ -1,7 +1,7 @@
-Mixpanel
+Mixpanel-qml
 ========
 
-Mixpanel library for QML.
+Mixpanel library for QtQuick.
 Only meaningful file is src/Mixpanel.qml, the rest is infrustructure for imports to work cleverly and tests.
 
 Projects using this library
@@ -13,8 +13,8 @@ Projects using this library
 Usage
 -----------
 Typically you want to add this project as a git submodule (or just copy-paste src folder to your project) and add src project to qml imports via something like
-`view->engine()->addImportPath(SailfishApp::pathTo("components/Mixpanel/src").toString());`
-(that is for Sailfish project. Full path to QML file in your project is then components/Mixpanel/src/Mixpanel/Mixpanel.qml )
+`view->engine()->addImportPath(SailfishApp::pathTo("components/Mixpanel-qml/src").toString());`
+(that is for Sailfish project. Full path to QML file in your project is then components/Mixpanel-qml/src/Mixpanel/Mixpanel.qml )
 
 Then in your code you can do the following
 
