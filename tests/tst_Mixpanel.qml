@@ -49,4 +49,14 @@ TestCase {
         }
         compare(objToSend, idealObjToSend, "Formed wrong object for a simple event")
     }
+
+    function test_addsCommonPropertiesIfAskedSo() {
+        mx.commonProperties = {prop1: "val1", prop2: "val2"}
+        var objToSend = mx._objForTrack("sample event")
+
+        var idealObjToSend = {"event":"sample event","properties":{"token":"d63a96616f0f32c2a4e7b17425bcd100",
+                "distinct_id":"d41d8cd98f00b204e9800998ecf8427e", "prop1" : "val1", "prop2" : "val2"}
+        }
+        compare(objToSend, idealObjToSend, "Formed wrong object for a simple event")
+    }
 }

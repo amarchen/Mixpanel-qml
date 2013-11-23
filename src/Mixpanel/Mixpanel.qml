@@ -15,6 +15,10 @@ QtObject {
     // For now let's make it mandatory
     property string userId: ""
 
+    // You can put here a list of properties to be added to every request. E.g. {version: "1.0", build: "126"}
+    // Note that modifying individual subproperties might not be possible, it is to be verified
+    property variant commonProperties: null
+
     // if true, mixpanel will process request with higher priority - useful for debugging
     property bool test: false
 
@@ -63,6 +67,10 @@ QtObject {
         if(!properties) {
             properties = {}
         }
+        var localCommonProperties = commonProperties
+        if(!localCommonProperties) {
+            localCommonProperties = {}
+        }
 
         var fullProperties = _extend(properties,
             {
@@ -70,6 +78,9 @@ QtObject {
                 distinct_id: Qt.md5(userId)
             }
         )
+
+        fullProperties = _extend(fullProperties, localCommonProperties)
+
         if(test) { fullProperties = _extend(fullProperties, {test: "1"}) }
         if(sendIp) { fullProperties = _extend(fullProperties, {ip: "1"}) }
 
