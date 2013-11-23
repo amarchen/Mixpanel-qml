@@ -18,12 +18,15 @@ QtObject {
     // if true, mixpanel will process request with higher priority - useful for debugging
     property bool test: false
 
+    // adds ip=1 if specified. That can replace userId and hopefully adds geolocation
+    property bool sendIp: false
+
     /**
      * No queueing. Will not send event if token or user id isn't specified yet
      * @param properties Optional dictionary to pass to mixpanel token and userid are added on top of it
      */
     function track(eventName, properties) {
-        if(!mixpanelToken || !userId) {
+        if(!mixpanelToken || (!userId && !sendIp)) {
             console.error("ERROR: Mixpanel token or user id is missing")
             return
         }
@@ -67,7 +70,8 @@ QtObject {
                 distinct_id: Qt.md5(userId)
             }
         )
-        if(test) { fullProperties = _extend(fullProperties, {test: 1}) }
+        if(test) { fullProperties = _extend(fullProperties, {test: "1"}) }
+        if(sendIp) { fullProperties = _extend(fullProperties, {ip: "1"}) }
 
         var objToSend = {
             event: eventName,
