@@ -4,6 +4,8 @@ Mixpanel-qml
 Mixpanel library for QtQuick.
 Only meaningful file is src/Mixpanel.qml, the rest is infrustructure for imports to work cleverly and tests.
 
+<a href="https://mixpanel.com/f/partner"><img src="//cdn.mxpnl.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" /></a>
+
 Projects using this library
 -----------
 - [Wikipedia for Sailfish](https://github.com/amarchen/Wikipedia)
